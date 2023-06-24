@@ -1,0 +1,8 @@
+.venv/
+database/
+.env
+.gitignore
+LICENSE.md
+README.md
+temp.py
+.git
