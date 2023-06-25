@@ -1,10 +1,10 @@
-CREATE TABLE Users (
+CREATE TABLE IF NOT EXISTS Users (
     user_id VARCHAR(255) PRIMARY KEY,
     display_name VARCHAR(255),
     color VARCHAR(7)
 );
 
-CREATE TABLE UserChannelRelations (
+CREATE TABLE IF NOT EXISTS UserChannelRelations (
     user_id VARCHAR(255) REFERENCES Users(user_id),
     channel VARCHAR(255),
     badge JSONB,
@@ -15,7 +15,7 @@ CREATE TABLE UserChannelRelations (
     PRIMARY KEY(user_id, channel)
 );
 
-CREATE TABLE Messages (
+CREATE TABLE IF NOT EXISTS Messages (
     message_id VARCHAR(255) PRIMARY KEY,
     user_id VARCHAR(255) REFERENCES Users(user_id),
     text TEXT,
