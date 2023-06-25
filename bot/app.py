@@ -148,7 +148,7 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
     USER_SCOPE = [AuthScope.CHAT_READ, AuthScope.CHAT_EDIT]
-    TARGET_CHANNEL = "boxbox"
+    TARGET_CHANNEL = "xqc"
     # Initialize global variables
     twitch = None
     chat = None

@@ -34,5 +34,20 @@ services:
       ports:
         - 5432:5432
 
+  scoreboard:
+    build:
+      context: ./scoreboard
+      dockerfile: Dockerfile
+    container_name: Scoreboard
+    volumes:
+      - ./scoreboard:/app
+    ports:
+      - 8501:8501 # Assuming you want to run the scoreboard on a different port
+    depends_on:
+      - postgres
+    restart: always
+    environment:
+    - RUNNING_IN_DOCKER=true
+
 volumes:
   postgres-db-volume:
