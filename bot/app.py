@@ -33,16 +33,16 @@ def db_create_connection():
             host="postgres",
             port="5432",
             dbname="twitch_analysis",
-            user="admin",
-            password="admin123",
+            user=os.getenv("POSTGRES_USER"),
+            password=os.getenv("POSTGRES_PASSWORD"),
         )
     else:
         connection = psycopg2.connect(
             host="localhost",
             port="5432",
             dbname="twitch_analysis",
-            user="admin",
-            password="admin123",
+            user=os.getenv("POSTGRES_USER"),
+            password=os.getenv("POSTGRES_PASSWORD"),
         )
     print(connection)
     # Create a new cursor object
@@ -128,8 +128,6 @@ async def on_message(msg: ChatMessage):
 
 
 async def run():
-    load_dotenv()
-    # Access environment variables
     app_id = os.getenv("APP_ID")
     app_secret = os.getenv("APP_SECRET")
     token = os.getenv("TWITCH_OAUTH_TOKEN")
@@ -145,10 +143,12 @@ async def run():
 
 
 if __name__ == "__main__":
+    load_dotenv()
+
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
     USER_SCOPE = [AuthScope.CHAT_READ, AuthScope.CHAT_EDIT]
-    TARGET_CHANNEL = "xqc"
+    TARGET_CHANNEL = "ipav999"
     # Initialize global variables
     twitch = None
     chat = None

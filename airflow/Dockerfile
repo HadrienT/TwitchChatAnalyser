@@ -6,12 +6,10 @@ WORKDIR /app
 
 # Copy the requirements.txt file to the container
 COPY ./requirements.txt .
-COPY ./wait-for-it.sh .
 
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-RUN chmod +x ./wait-for-it.sh
 
 COPY . .
 
-CMD ["./wait-for-it.sh", "postgres:5432", "--", "streamlit", "run", "app.py"]
+CMD ["/wait-for-it.sh", "db:5432", "--", "streamlit", "run", "app.py"]
